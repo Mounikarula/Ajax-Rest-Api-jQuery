@@ -24,4 +24,23 @@ $(function() {
    		}
    	});
    });
+
+   // CREATE/POST
+   $('#create-form').on('submit', function(event) {
+      event.preventDefault();
+
+      var createInput = $('#create-input');
+
+      $.ajax({
+         url: '/products',
+         method: 'POST',
+         contentType: 'application/json',
+         data: JSON.stringify({ name: createInput.val() }),
+         success: function(response){
+            console.log(response);
+         createInput.val('');
+         $('#get-button').click();
+      }
+      });
+   })
 });
