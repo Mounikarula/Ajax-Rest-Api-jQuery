@@ -36,18 +36,18 @@ app.post('/products', function(req, res) {
       res.send('Successfully created product!');
 });
 
-app.put('/products/:id', function(){
+app.put('/products/:id', function(req, res){
 	var id = req.params.id;
 
 	var found = false;
 
 	products.forEach(function(product, index) {
-		if (!found && product.id === id) {
+		if (!found && product.id === Number(id)) {
 			product.name = newName;
 		}
 	});
 
-     res.send('Succesfully updated product')
+     res.send('Succesfully updated product!')
 });
 
 app.listen(PORT, function() {
