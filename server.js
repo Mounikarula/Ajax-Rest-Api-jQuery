@@ -50,6 +50,19 @@ app.put('/products/:id', function(req, res){
      res.send('Succesfully updated product!')
 });
 
+app.delete('/products/:id', function(req, res) {
+     var id = req.params.id;
+
+     var found = false;
+     products.forEach(function(product, index) {
+     	if(!found && product.id === Number(id)) {
+     		products.splice(index, 1);
+     	}
+     });
+
+     res.send('Successfully deleted product');
+});
+
 app.listen(PORT, function() {
 	console.log('server listening on ' + PORT);
 });
